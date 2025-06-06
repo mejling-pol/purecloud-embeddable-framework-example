@@ -4,11 +4,7 @@ window.Framework = {
     config: {
         name:"ExampleGitHubApp",
         clientIds: {
-            'mypurecloud.com': '',
-            'mypurecloud.ie': '',
-            'mypurecloud.com.au': '',
-            'mypurecloud.jp': '',
-            'mypurecloud.de': ''
+            'mypurecloud.jp': '3ecbf614-c544-4abe-87af-882653d05410',
         },
         customInteractionAttributes: ['PT_URLPop', 'PT_SearchValue', 'PT_TransferContext'],
         settings: {
@@ -16,12 +12,13 @@ window.Framework = {
             hideWebRTCPopUpOption: false,
             enableCallLogs: true,
             enableTransferContext: true,
+            dedicatedLoginWindow: false,
             hideCallLogSubject: true,
             hideCallLogContact: false,
             hideCallLogRelation: false,
             searchTargets: ['people', 'queues', 'frameworkcontacts'],
             theme: {
-                primary: '#d4cebd',
+                primary: '#006cfd',
                 text: '#123'
             }
         }
@@ -32,18 +29,21 @@ window.Framework = {
             {
                 type: 'Interaction', 
                 callback: function (category, interaction) {
+                    // alert('Interaction Subscription: ' + category + ' - ' + interaction);
                     window.parent.postMessage(JSON.stringify({type:"interactionSubscription", data:{category:category, interaction:interaction}}) , "*");
                 }  
             },
             {
                 type: 'UserAction', 
                 callback: function (category, data) {
+                    // alert('User Action Subscription: ' + category + ' - ' + JSON.stringify(data));
                     window.parent.postMessage(JSON.stringify({type:"userActionSubscription", data:{category:category, data:data}}) , "*");
                 }  
             },
             {
                 type: 'Notification', 
                 callback: function (category, data) {
+                    // alert('Notification Subscription: ' + category + ' - ' + JSON.stringify(data));
                     window.parent.postMessage(JSON.stringify({type:"notificationSubscription", data:{category:category, data:data}}) , "*");
                 }  
             }
@@ -52,6 +52,9 @@ window.Framework = {
         window.addEventListener("message", function(event) {
             try {
                 var message = JSON.parse(event.data);
+                console.log('event Messageeeeeee', message);
+
+                alert('event Messageeeeeee: ' + event.data);
                 if(message){
                     if(message.type == "clickToDial"){
                         window.PureCloud.clickToDial(message.data);

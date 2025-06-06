@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded',function(){
-    
+document.addEventListener('DOMContentLoaded', function () {
+
     document.getElementById("clickToDial").addEventListener("click", clickToDial);
     document.getElementById("addAssociation").addEventListener("click", addAssociation);
     document.getElementById("addAttribute").addEventListener("click", addAttribute);
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('muteInteraction').addEventListener("click", updateInteractionState);
     document.getElementById('updateAudioConfiguration').addEventListener("click", updateAudioConfiguration);
     document.getElementById('sendCustomNotification').addEventListener("click", sendCustomNotification);
-    
+
     document.getElementById('view-interactionList').addEventListener("click", setView);
     document.getElementById('view-calllog').addEventListener("click", setView);
     document.getElementById('view-newInteraction').addEventListener("click", setView);
@@ -20,32 +20,43 @@ document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('view-settings').addEventListener("click", setView);
 
     window.addEventListener("message", function(event) {
-        var message = JSON.parse(event.data);
-        if(message){
-            if(message.type == "screenPop"){
-                document.getElementById("screenPopPayload").value = event.data;
-            } else if(message.type == "processCallLog"){
-                document.getElementById("processCallLogPayLoad").value = event.data;
-            } else if(message.type == "openCallLog"){
-                document.getElementById("openCallLogPayLoad").value = event.data;
-            } else if(message.type == "interactionSubscription"){
-                document.getElementById("interactionSubscriptionPayload").value = event.data;
-            } else if(message.type == "userActionSubscription"){
-                document.getElementById("userActionSubscriptionPayload").value = event.data;
-            } else if(message.type == "notificationSubscription"){
-                document.getElementById("notificationSubscriptionPayload").value = event.data;
-            } else if(message.type == "contactSearch") {
-                document.getElementById("searchText").innerHTML = ": " + message.data.searchString;
-                sendContactSearch();
+        try {
+            var message = JSON.parse(event.data);
+            if (message) {
+                if (message.type == "screenPop") {
+                    document.getElementById("screenPopPayload").value = event.data;
+                } else if (message.type == "processCallLog") {
+                    document.getElementById("processCallLogPayLoad").value = event.data;
+                } else if (message.type == "openCallLog") {
+                    document.getElementById("openCallLogPayLoad").value = event.data;
+                } else if (message.type == "interactionSubscription") {
+                    // append the interaction to value
+                    
+                    document.getElementById("interactionSubscriptionPayload").value += event.data + "\n";
+                } else if (message.type == "userActionSubscription") {
+                    document.getElementById("userActionSubscriptionPayload").value = event.data;
+                } else if (message.type == "notificationSubscription") {
+                    document.getElementById("notificationSubscriptionPayload").value = event.data;
+                } else if (message.type == "contactSearch") {
+                    document.getElementById("searchText").innerHTML = ": " + message.data.searchString;
+                    sendContactSearch();
+                }
             }
+        } catch (error) {
+            
         }
+        
     });
 
     function clickToDial() {
         console.log('process click to dial');
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
             type: 'clickToDial',
-            data: { number: '3172222222', autoPlace: true }
+            data: {
+                number: '99070955491396',
+                autoPlace: true,
+                queueId: ''
+            }
         }), "*");
     }
 
@@ -85,7 +96,7 @@ document.addEventListener('DOMContentLoaded',function(){
         console.log('process user status update');
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
             type: 'updateUserStatus',
-            data: { id:document.getElementById("statusDropDown").value }
+            data: { id: document.getElementById("statusDropDown").value }
         }), "*");
     }
 
@@ -93,9 +104,9 @@ document.addEventListener('DOMContentLoaded',function(){
         console.log('process interaction state change');
         var lastInteractionPayload = JSON.parse(document.getElementById("interactionSubscriptionPayload").value);
         var interactionId;
-        if (lastInteractionPayload.data.interaction.old){
+        if (lastInteractionPayload.data.interaction.old) {
             interactionId = lastInteractionPayload.data.interaction.old.id;
-        }else {
+        } else {
             interactionId = lastInteractionPayload.data.interaction.id;
         }
         let payload = {
@@ -108,7 +119,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }), "*");
     }
 
-    function updateAudioConfiguration(){
+    function updateAudioConfiguration() {
         console.log('Update Audio Configuration');
         var payload = {
             call: document.getElementById('audio-call').checked,
@@ -128,9 +139,9 @@ document.addEventListener('DOMContentLoaded',function(){
     function setView(event) {
         console.log('process view update');
         let payload = {
-            type:"main", 
+            type: "main",
             view: {
-                name:event.target.outerText
+                name: event.target.outerText
             }
         };
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
@@ -139,11 +150,11 @@ document.addEventListener('DOMContentLoaded',function(){
         }), "*");
     }
 
-    function sendCustomNotification(){
+    function sendCustomNotification() {
         console.log('Send Custom User Notification');
         var payload = {
             message: document.getElementById('customNotificationMessage').value,
-            type: document.getElementById('notificationType').value,  
+            type: document.getElementById('notificationType').value,
             timeout: document.getElementById('notificationTimeout').value
         };
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
