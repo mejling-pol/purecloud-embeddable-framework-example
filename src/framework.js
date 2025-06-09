@@ -57,12 +57,6 @@ window.Framework = {
       {
         type: "Interaction",
         callback: function (category, interaction) {
-          // alert("Interaction Subscription: " + category + " - " + interaction);
-
-          console.log("custom===============> event ======> initialSetup", {
-            category,
-            interaction,
-          });
           window.parent.postMessage(
             JSON.stringify({
               type: "interactionSubscription",
@@ -75,16 +69,6 @@ window.Framework = {
       {
         type: "UserAction",
         callback: function (category, data) {
-          // alert(
-          //   "User Action Subscription: " +
-          //     category +
-          //     " - " +
-          //     JSON.stringify(data),
-          // );
-          console.log("custom===============> event ======> initialSetup =====> UserAction", {
-            category,
-            data,
-          });
           window.parent.postMessage(
             JSON.stringify({
               type: "userActionSubscription",
@@ -117,10 +101,6 @@ window.Framework = {
     window.addEventListener("message", function (event) {
       try {
         var message = JSON.parse(event.data);
-        console.log("custom===============> event ======> message", {
-          message,type: message?.type,
-        });
-        // console.log('event Messageeeeeee', message);
 
         alert("event Messageeeeeee: " + event.data);
         if (message) {
@@ -156,10 +136,6 @@ window.Framework = {
     });
   },
   screenPop: function (searchString, interaction) {
-    console.log("custom===============> custom ======> screenPop", {
-      searchString,
-      interaction,
-    });
     window.parent.postMessage(
       JSON.stringify({
         type: "screenPop",
@@ -175,13 +151,6 @@ window.Framework = {
     onSuccess,
     onFailure,
   ) {
-    console.log("custom===============> event ======> processCallLog", {
-      callLog,
-      interaction,
-      eventName,
-      onSuccess,
-      onFailure,
-    });
     window.parent.postMessage(
       JSON.stringify({
         type: "processCallLog",
@@ -203,10 +172,6 @@ window.Framework = {
     }
   },
   openCallLog: function (callLog, interaction) {
-    console.log("custom===============> event ======> openCallLog", {
-      callLog,
-      interaction,
-    });
     window.parent.postMessage(
       JSON.stringify({
         type: "openCallLog",
@@ -216,11 +181,6 @@ window.Framework = {
     );
   },
   contactSearch: function (searchString, onSuccess, onFailure) {
-    console.log("custom===============> event ======> contactSearch", {
-      searchString,
-      onSuccess,
-    });
-
     contactSearchCallback = onSuccess;
     window.parent.postMessage(
       JSON.stringify({
