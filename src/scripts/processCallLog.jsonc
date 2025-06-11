@@ -1,0 +1,40 @@
+{
+  "type": "processCallLog",
+  "data": {
+    "callLog": {
+      "id": 1749630066028,
+      "calldurationinseconds": 21
+    },
+    "interactionId": {
+      "id": "4d609bb8-75ce-40e6-8c4d-c7b048e04b43",
+      "connectedTime": "2025-06-11T08:21:05.850Z",
+      "endTime": "2025-06-11T08:21:26.404Z",
+      "phone": "tel:+66955491396",
+      "name": "0955491396",
+      "isConnected": false,
+      "isDisconnected": true,
+      "isDone": false,
+      "state": "DISCONNECTED",
+      "isCallback": false,
+      "isDialer": false,
+      "isChat": false,
+      "isEmail": false,
+      "isMessage": false,
+      "isVoicemail": false,
+      "remoteName": "0955491396",
+      "recordingState": "active",
+      "securePause": false,
+      "displayAddress": "+66955491396",
+      "queueName": "SPW_Normal",
+      "ani": "+66955491396",
+      "calledNumber": "+6620217134",
+      "interactionDurationSeconds": 21,
+      "totalIvrDurationSeconds": 27,
+      "totalAcdDurationSeconds": 5,
+      "direction": "Inbound",
+      "isInternal": false,
+      "startTime": "2025-06-11T08:20:34.315Z"
+    },
+    "eventName": "interactionDisconnected"
+  }
+}

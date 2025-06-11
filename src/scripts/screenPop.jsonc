@@ -1,0 +1,62 @@
+{
+  "type": "screenPop",
+  "data": {
+    "searchString": "+66955491396",
+    "interactionId": {
+      "id": "4d609bb8-75ce-40e6-8c4d-c7b048e04b43",
+      "phone": "tel:+66955491396",
+      "name": "0955491396",
+      "isConnected": false,
+      "isDisconnected": false,
+      "isDone": false,
+      "state": "ALERTING",
+      "isCallback": false,
+      "isDialer": false,
+      "isChat": false,
+      "isEmail": false,
+      "isMessage": false,
+      "isVoicemail": false,
+      "remoteName": "0955491396",
+      "recordingState": "paused",
+      "securePause": false,
+      "displayAddress": "+66955491396",
+      "queueName": "SPW_Normal",
+      "ani": "+66955491396",
+      "calledNumber": "+6620217134",
+      "totalIvrDurationSeconds": 27,
+      "direction": "Inbound",
+      "isInternal": false
+    }
+  }
+}
+{
+  "type": "screenPop",
+  "data": {
+    "searchString": "+66909169616",
+    "interactionId": {
+      "id": "d9c1b99a-7ba7-4d0e-8d20-cc99972b0b7a",
+      "phone": "tel:+66909169616",
+      "name": "0909169616",
+      "isConnected": false,
+      "isDisconnected": false,
+      "isDone": false,
+      "state": "ALERTING",
+      "isCallback": false,
+      "isDialer": false,
+      "isChat": false,
+      "isEmail": false,
+      "isMessage": false,
+      "isVoicemail": false,
+      "remoteName": "0909169616",
+      "recordingState": "paused",
+      "securePause": false,
+      "displayAddress": "+66909169616",
+      "queueName": "SPW_Normal",
+      "ani": "+66909169616",
+      "calledNumber": "+6620217134",
+      "totalIvrDurationSeconds": 27,
+      "direction": "Inbound",
+      "isInternal": false
+    }
+  }
+}

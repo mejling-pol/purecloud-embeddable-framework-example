@@ -19,19 +19,32 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('view-callback').addEventListener("click", setView);
     document.getElementById('view-settings').addEventListener("click", setView);
 
-    window.addEventListener("message", function(event) {
+    window.addEventListener("message", async function (event) {
         try {
             var message = JSON.parse(event.data);
             if (message) {
                 if (message.type == "screenPop") {
-                    document.getElementById("screenPopPayload").value = event.data;
+                    // const { direction, name } = message?.data?.interactionId;
+
+                    // if (direction === 'Inbound') {
+                    //     // 1. create a ticket after done move to page ticket genesys
+
+                    //     const resTicket = await axios.post('http://localhost:3000/connectx/api/genesysconnector/createTicket', { ...message?.data });
+
+                    //     // 2. find the profile customer by phone number after done popup modal select customer
+                    //     const findProfileCustomer = await axios.get(`http://localhost:3000/connectx/api/genesysconnector/findProfileCustomer?phoneNumber=${name}`);
+
+                    //     console.log('findProfileCustomer', findProfileCustomer.data);
+                    // }
+
+                    document.getElementById("screenPopPayload").value += event.data + "\n";
                 } else if (message.type == "processCallLog") {
-                    document.getElementById("processCallLogPayLoad").value = event.data;
+                    document.getElementById("processCallLogPayLoad").value += event.data + "\n";
                 } else if (message.type == "openCallLog") {
-                    document.getElementById("openCallLogPayLoad").value = event.data;
+                    document.getElementById("openCallLogPayLoad").value += event.data + "\n";
                 } else if (message.type == "interactionSubscription") {
                     // append the interaction to value
-                    
+
                     document.getElementById("interactionSubscriptionPayload").value += event.data + "\n";
                 } else if (message.type == "userActionSubscription") {
                     document.getElementById("userActionSubscriptionPayload").value = event.data;
@@ -43,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         } catch (error) {
-            
+
         }
-        
+
     });
 
     function clickToDial() {
@@ -55,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
             data: {
                 number: '99070955491396',
                 autoPlace: true,
-                queueId: ''
+                queueId: 'f9ef8988-d6d6-406e-90bd-2054cf9cb356' // ดึงจาก /Organizes/0DEV0rgRAndDConnectX/connector/genesys/channel/K7T55JXQ0WCDWtPcgt4A  ->> outboundQueueId
             }
         }), "*");
     }
