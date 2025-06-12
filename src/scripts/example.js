@@ -62,11 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function clickToDial() {
-        console.log('process click to dial');
+        // console.log('process click to dial');
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
             type: 'clickToDial',
             data: {
-                number: '99070955491396',
+                number: '99070909169616',
                 autoPlace: true,
                 queueId: 'f9ef8988-d6d6-406e-90bd-2054cf9cb356' // ดึงจาก /Organizes/0DEV0rgRAndDConnectX/connector/genesys/channel/K7T55JXQ0WCDWtPcgt4A  ->> outboundQueueId
             }
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function addAssociation() {
-        console.log('process add association');
+        // console.log('process add association');
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
             type: 'addAssociation',
             data: JSON.parse(document.getElementById("associationPayload").value)
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function addAttribute() {
-        console.log('process add attribute');
+        // console.log('process add attribute');
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
             type: 'addAttribute',
             data: JSON.parse(document.getElementById("attributePayload").value)
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function addTransferContext() {
-        console.log('process add Transfer Context');
+        // console.log('process add Transfer Context');
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
             type: 'addTransferContext',
             data: JSON.parse(document.getElementById("transferContextPayload").value)
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function sendContactSearch() {
-        console.log('process add Search Context');
+        // console.log('process add Search Context');
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
             type: 'sendContactSearch',
             data: JSON.parse(document.getElementById("contactSearchPayload").value)
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateUserStatus() {
-        console.log('process user status update');
+        // console.log('process user status update');
         document.getElementById("softphone").contentWindow.postMessage(JSON.stringify({
             type: 'updateUserStatus',
             data: { id: document.getElementById("statusDropDown").value }
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateInteractionState(event) {
-        console.log('process interaction state change');
+        // console.log('process interaction state change');
         var lastInteractionPayload = JSON.parse(document.getElementById("interactionSubscriptionPayload").value);
         var interactionId;
         if (lastInteractionPayload.data.interaction.old) {
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateAudioConfiguration() {
-        console.log('Update Audio Configuration');
+        // console.log('Update Audio Configuration');
         var payload = {
             call: document.getElementById('audio-call').checked,
             chat: document.getElementById('audio-chat').checked,
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     function setView(event) {
-        console.log('process view update');
+        // console.log('process view update');
         let payload = {
             type: "main",
             view: {
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function sendCustomNotification() {
-        console.log('Send Custom User Notification');
+        // console.log('Send Custom User Notification');
         var payload = {
             message: document.getElementById('customNotificationMessage').value,
             type: document.getElementById('notificationType').value,

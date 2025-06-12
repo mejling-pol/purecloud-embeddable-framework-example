@@ -81,12 +81,12 @@ window.Framework = {
       {
         type: "Notification",
         callback: function (category, data) {
-          alert(
-            "Notification Subscription: " +
-              category +
-              " - " +
-              JSON.stringify(data),
-          );
+          // alert(
+          //   "Notification Subscription: " +
+          //     category +
+          //     " - " +
+          //     JSON.stringify(data),
+          // );
           window.parent.postMessage(
             JSON.stringify({
               type: "notificationSubscription",
@@ -102,7 +102,7 @@ window.Framework = {
       try {
         var message = JSON.parse(event.data);
 
-        alert("event Messageeeeeee: " + event.data);
+        // alert("event Messageeeeeee: " + event.data);
         if (message) {
           if (message.type == "clickToDial") {
             window.PureCloud.clickToDial(message.data);
