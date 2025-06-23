@@ -29,7 +29,7 @@ window.Framework = {
         "disconnect",
         "record",
         // "securePause",
-        // "dtmf",
+        "dtmf",
         // "scheduleCallback",
         // "flag",
         // "requestAfterCallWork",
